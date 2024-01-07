@@ -4,14 +4,12 @@ import 'package:provider/provider.dart';
 import '../components/common_drawer.dart';
 import '../doas/todo_doa.dart';
 
-/// 為了讓畫面具有動態效果，繼承 StatefulWidget
-/// 為了有效保存用戶的任務輸入，在裡面設計了一個 List，名為 todoList，用來存放用戶的輸入
+
+
 /// 透過 createState 函數，調動 _TodoInputDemoScreen 這個 State 類別
 class TodoInputDemoScreen extends StatefulWidget {
-  // TODO: 書上這一段沒有拿掉
-  // // 保存用戶輸入的任務資料
-  // List<String> todoList = [];
-
+  
+  
   // StatefulWidget 的變化笑過出自於這個 createState 函數。
   @override
   State createState() {
@@ -31,25 +29,25 @@ class _TodoInputDemoScreen extends State<TodoInputDemoScreen> {
     Widget userInputTextField = Container(
       width: 500,
       child: TextField(
-        // decoration 為裝飾，我們使用 InputDecoration 進行外觀變化
+        
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           hintText: '請輸入想交換的書，成功換得請打勾',
           hoverColor: Color.fromARGB(255, 59, 113, 222),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color.fromARGB(255, 59, 204, 204), // 设置输入框获取焦点时的边框颜色
+              color: Color.fromARGB(255, 59, 204, 204), 
             ),
           ),
         ),
         cursorColor: Colors.black,
-        // 用戶要輸入的字，都先經由此 controller，後轉發到其他功能
+        
         controller: textEditingController,
-        // 當用戶點擊enter時，傳入先前說所輸入的文字，並觸發 setState，渲染畫面
+        
         onSubmitted: (inputValue) {
           setState(() {
-            // 透過管理總頁面狀態的 context，去讀取 Provider 提供的 TodoDao，
-            // 並調用 insertTodo 函數，插入資料
+            ，
+            // 調用 insertTodo 函數，插入資料
             context.read<TodoDao>().insertTodo(inputValue);
             // 清空輸入文字框
             textEditingController.clear();
@@ -58,7 +56,7 @@ class _TodoInputDemoScreen extends State<TodoInputDemoScreen> {
       ),
     );
 
-    // 回傳頁面，要求靠頂部置中
+    // 回傳頁面
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -139,9 +137,8 @@ class _TodoInputDemoScreen extends State<TodoInputDemoScreen> {
             // 文字輸入框
             userInputTextField,
             // 用戶所輸入的內容
-            // 三個點的意思是使該 List 成為 children 內的元素
-            // 透過管理總頁面狀態的 context，去讀取 Provider 提供的 TodoDao，
-            // 並使用 getTodos 調度所有todo
+            // 三個點是使該 List 成為 children 內的元素
+            
             ...context
                 .watch<TodoDao>()
                 .getTodos()
