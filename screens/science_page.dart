@@ -1,4 +1,3 @@
-// 引用 Flutter 的核心套件
 import 'package:iot/screens/search_page.dart';
 import 'package:flutter/material.dart';
 import '../components/common_drawer.dart';
